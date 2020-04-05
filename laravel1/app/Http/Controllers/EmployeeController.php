@@ -27,9 +27,9 @@ class EmployeeController extends Controller
     public function create(Request $request)
     {
         $emp = new Employee;
-        $emp->FirstName = $request->input('FirstName');
-        $emp->LastName = $request->input('LastName');
-        $emp->Email = $request->input('Email');
+        $emp->firstname = $request->input('firstname');
+        $emp->lastname = $request->input('lastname');
+        $emp->email = $request->input('email');
         $emp->save();
         return new EmployeeResource($emp);
     }
@@ -44,11 +44,19 @@ class EmployeeController extends Controller
     public function store(Request $request)
     {
         $emp = new Employee;
-        $emp->FirstName = $request->input('FirstName');
-        $emp->LastName = $request->input('LastName');
-        $emp->Email = $request->input('Email');
-        $emp->save();
-        return new EmployeeResource($emp);
+        try
+        {
+            $emp->firstname = $request->input( 'firstname' );
+            $emp->lastname = $request->input( 'lastname' );
+            $emp->email = $request->input( 'email' );
+            $emp->save();
+        }
+        catch (\Exception $e) {
+
+            die($e->getMessage());
+        }
+
+        return new EmployeeResource( $emp );
     }
 
 
@@ -61,6 +69,7 @@ class EmployeeController extends Controller
     public function show($id)
     {
          $article = Employee::find($id); //id comes from route
+
         if( $article ){
             return new EmployeeResource($article);
         }
@@ -78,9 +87,9 @@ class EmployeeController extends Controller
     public function update(Request $request, $id)
     {
         $emp = Employee::find($id);
-        $emp->FirstName = $request->input('FirstName');
-        $emp->LastName = $request->input('LastName');
-        $emp->Email = $request->input('Email');
+        $emp->firstname = $request->input('firstname');
+        $emp->lastname = $request->input('lastname');
+        $emp->email = $request->input('email');
         $emp->save();
         return new EmployeeResource($emp);
     }
