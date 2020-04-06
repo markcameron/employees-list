@@ -8,7 +8,7 @@ LABEL ch.ejpd.maintainer="Mark CAMERON mark.oliver.cameron@gmail.com>" \
     ch.ejpd.manufacturer="DevFactory"
 
 # copy artifact build from the 'build environment'
-COPY ./dist/productviewer /usr/share/nginx/html
+COPY ./dist/angular9-springboot-client /usr/share/nginx/html
 
 # copy the overwrite the nginx default config file with our own custom one
 COPY ./default.conf /etc/nginx/conf.d/default.conf
