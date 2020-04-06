@@ -1,5 +1,6 @@
 pipeline {
-    agent none
+    agent any
+
     stages {
 
         stage('Build frontend') {
@@ -26,7 +27,10 @@ pipeline {
 
         stage('Dockerize frontend') {
             steps {
-                docker.build("flicc-product-viewer-backend:${env.BUILD_ID}", "-f laravel1/.docker/Dockerfile laravel1")
+                script {
+                    def customImage = docker.build("flicc-product-viewer-backend:${env.BUILD_ID}", "-f laravel1/.docker/Dockerfile laravel1")
+                    // customImage.push()
+                }
             }
         }
     }
