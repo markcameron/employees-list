@@ -65,7 +65,7 @@ node {
             script: '''
               ls -la laravel1
             '''
-            def image = docker.build("flicc-product-viewer-backend:${env.BUILD_ID}", "laravel1/.docker")
+            def image = docker.build("flicc-product-viewer-backend:${env.BUILD_ID}", "-f laravel1/.docker/Dockerfile laravel1")
         }
     }
 
