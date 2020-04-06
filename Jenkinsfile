@@ -18,6 +18,16 @@ node {
                   npm install
                 '''
             }
+
+            stage('Build') {
+                sh label:
+                  'Running npm install',
+                script: '''
+                  node --version
+                  cd employee-management
+                  ng build --prod
+                '''
+            }
         }
     }
 
