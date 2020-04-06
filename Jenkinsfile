@@ -4,7 +4,7 @@ node {
         checkout scm
     }
 
-    stage("Main build") {
+    stage("Prepare frontend") {
         docker.image('node:10').pull()
         docker.image('ismail0352/chrome-node').pull()
 
@@ -29,6 +29,13 @@ node {
                 '''
             }
         }
+    }
+
+    stage('Dockerize frontent') {
+        /* This builds the actual image; synonymous to
+         * docker build on the command line */
+        cd employee-management
+        def customImage = docker.build("flicc:product-viewer:${env.BUILD_ID}")
     }
 
 }
