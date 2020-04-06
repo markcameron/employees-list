@@ -8,7 +8,7 @@ node {
         docker.image('node:10').pull()
 
         docker.image('node:10').inside {
-            stage('Install') {
+            stage('Build angular app') {
                 sh label:
                   'Build angular app',
                 script: '''
