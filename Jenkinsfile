@@ -25,7 +25,7 @@ node {
                 script: '''
                   node --version
                   cd employee-management
-                  ng build --prod
+                  node_modules/.bin/ng build --prod
                 '''
             }
         }
