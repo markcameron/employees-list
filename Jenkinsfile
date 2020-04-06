@@ -26,11 +26,7 @@ pipeline {
 
         stage('Dockerize frontend') {
             steps {
-                dockerfile {
-                    filename 'Dockerfile'
-                    dir 'employee-management'
-                    label "flicc-product-viewer-frontend:${env.BUILD_ID}"
-                }
+                docker.build("flicc-product-viewer-backend:${env.BUILD_ID}", "-f laravel1/.docker/Dockerfile laravel1")
             }
         }
     }
