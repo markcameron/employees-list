@@ -25,7 +25,6 @@ pipeline {
         }
 
         stage('Dockerize frontend') {
-            agent { docker 'composer:latest' }
             steps {
                 dockerfile {
                     filename 'Dockerfile'
