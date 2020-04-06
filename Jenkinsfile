@@ -34,6 +34,8 @@ node {
     stage('Dockerize frontent') {
         /* This builds the actual image; synonymous to
          * docker build on the command line */
+        sh label:
+          'Check directories',
         script: '''
            ls -la employee-management
            ls -la employee-management/dist
