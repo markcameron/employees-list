@@ -6,7 +6,7 @@ node {
 
     stage("Prepare frontend") {
         docker.image('node:10').pull()
-        docker.image('ismail0352/chrome-node').pull()
+        docker.image('composer:latest').pull()
 
         parallel {
             docker.image('node:10').inside {
