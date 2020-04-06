@@ -37,7 +37,7 @@ node {
         // script: '''
         //   cd employee-management
         // '''
-        def customImage = docker.build("flicc-product-viewer:${env.BUILD_ID}", "employee-management/Dockerfile")
+        def customImage = docker.build("flicc-product-viewer:${env.BUILD_ID}", "employee-management")
     }
 
 }
