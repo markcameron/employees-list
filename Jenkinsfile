@@ -34,9 +34,10 @@ node {
     stage('Dockerize frontent') {
         /* This builds the actual image; synonymous to
          * docker build on the command line */
-        // script: '''
-        //   cd employee-management
-        // '''
+        script: '''
+           ls -la employee-management
+           ls -la employee-management/dist
+        '''
         def customImage = docker.build("flicc-product-viewer:${env.BUILD_ID}", "employee-management")
     }
 
