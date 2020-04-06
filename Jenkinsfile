@@ -40,16 +40,35 @@ node {
 
     parallel stages
 
-    stage('Dockerize frontend') {
-        /* This builds the actual image; synonymous to
-         * docker build on the command line */
-        sh label:
-          'Check directories',
-        script: '''
-           ls -la employee-management
-           ls -la employee-management/dist
-        '''
-        def customImage = docker.build("flicc-product-viewer:${env.BUILD_ID}", "employee-management")
+    stages = [:]
+
+    stages['dockerize_front'] = {
+        stage('Dockerize frontend') {
+            /* This builds the actual image; synonymous to
+             * docker build on the command line */
+            sh label:
+            'Check directories',
+            script: '''
+              ls -la employee-management
+              ls -la employee-management/dist
+            '''
+            def image = docker.build("flicc-product-viewer-frontend:${env.BUILD_ID}", "employee-management")
+        }
     }
+
+    stages['dockerize_backend'] = {
+        stage('Dockerize backend') {
+            /* This builds the actual image; synonymous to
+             * docker build on the command line */
+            sh label:
+            'Check directories',
+            script: '''
+              ls -la laravel1
+            '''
+            def image = docker.build("flicc-product-viewer-backend:${env.BUILD_ID}", "laravel1/.docker")
+        }
+    }
+
+    parallel stages
 
 }
