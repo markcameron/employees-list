@@ -24,7 +24,7 @@ node {
         }
     }
 
-    stages['angular'] = {
+    stages['composer'] = {
         docker.image('composer:latest').inside {
             stage('Build Laravel PHP backend') {
                 sh label:
