@@ -28,8 +28,17 @@ pipeline {
         stage('Dockerize frontend') {
             steps {
                 script {
-                    def customImage = docker.build("flicc-product-viewer-backend:${env.BUILD_ID}", "-f laravel1/.docker/Dockerfile laravel1")
-                    // customImage.push()
+                    def image = docker.build("flicc-product-viewer:${env.BUILD_ID}", "employee-management")
+                    // image.push()
+                }
+            }
+        }
+
+        stage('Dockerize backend') {
+            steps {
+                script {
+                    def image = docker.build("flicc-product-viewer-backend:${env.BUILD_ID}", "-f laravel1/.docker/Dockerfile laravel1")
+                    // image.push()
                 }
             }
         }
