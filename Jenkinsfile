@@ -9,11 +9,11 @@ node {
     docker.image('node:10').pull()
     docker.image('composer:latest').pull()
 
-    stages['angular'] = {
+    stages['Build angular app'] = {
         docker.image('node:10').inside {
             stage('Build angular app') {
                 sh label:
-                'Running npm install',
+                'Running npm install and building for production',
                 script: '''
                   node --version
                   cd employee-management
@@ -24,7 +24,7 @@ node {
         }
     }
 
-    stages['composer'] = {
+    stages['Install PHP packages'] = {
         docker.image('composer:latest').inside {
             stage('Build Laravel PHP backend') {
                 sh label:
@@ -42,10 +42,8 @@ node {
 
     stages = [:]
 
-    stages['dockerize_front'] = {
+    stages['Dockerize frontend'] = {
         stage('Dockerize frontend') {
-            /* This builds the actual image; synonymous to
-             * docker build on the command line */
             sh label:
             'Check directories',
             script: '''
@@ -56,10 +54,8 @@ node {
         }
     }
 
-    stages['dockerize_backend'] = {
+    stages['Dockerize backend'] = {
         stage('Dockerize backend') {
-            /* This builds the actual image; synonymous to
-             * docker build on the command line */
             sh label:
             'Check directories',
             script: '''
