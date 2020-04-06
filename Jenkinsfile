@@ -14,14 +14,5 @@ node {
           npm install
         '''
       }
-
-      stage('Build') {
-        sh label:
-          'Running npm run lint',
-        script: '''
-          cd employee-management
-          ng build
-        '''
-      }
     }
 }
